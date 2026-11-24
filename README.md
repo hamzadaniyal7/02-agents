@@ -328,7 +328,7 @@ Project 2 of 3 in a build-it-yourself AI-engineering series:
 |---|---|---|
 | 01 | [rag](https://github.com/hamzadaniyal7/01-rag) | Retrieval, grounding, and citations you can verify |
 | **02** | **agents** *(this repo)* | Loop engineering — plan → act → check over many steps |
-| 03 | deploy | Serving an open model yourself with vLLM or SGLang |
+| 03 | [deploy](https://github.com/hamzadaniyal7/03-deploy) | Serving an open model yourself with vLLM or SGLang |
 
 ## License
 
