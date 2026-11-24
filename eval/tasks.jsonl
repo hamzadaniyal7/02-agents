@@ -1,0 +1,11 @@
+{"id": "build-command", "task": "What command builds this project? Answer with the command itself.", "expect": {"status": "success", "answer_contains": ["make build"], "max_steps": 6}}
+{"id": "oncall-office", "task": "Which office does primary on-call sit in?", "expect": {"status": "success", "answer_contains": ["Helsinki"], "max_steps": 6}}
+{"id": "queue-timeout", "task": "How long does the publisher wait for the downstream fulfilment service, and which file sets that value?", "expect": {"status": "success", "answer_contains": ["settings.toml"], "max_steps": 8, "answer_regex": ["\\b15\\b"]}}
+{"id": "latest-change", "task": "What is the most recent release in the changelog, and on what date was it released?", "expect": {"status": "success", "answer_contains": ["2.4.0", "2026-09-02"], "max_steps": 6}}
+{"id": "refunded-count", "task": "How many orders in data/orders.csv have the status 'refunded'? Answer with the number.", "expect": {"status": "success", "max_steps": 8, "answer_regex": ["\\b3\\b"]}}
+{"id": "refunded-total", "task": "What is the combined total_cents of every refunded order in data/orders.csv?", "expect": {"status": "success", "max_steps": 10, "answer_regex": ["\\b50,?999\\b"]}}
+{"id": "status-added-230", "task": "Release 2.3.0 in the changelog added a new order status. How many orders in data/orders.csv currently have that status?", "expect": {"status": "success", "max_steps": 10, "answer_regex": ["\\brefunded\\b", "\\b3\\b"]}}
+{"id": "validate-rules", "task": "List every condition that makes an order invalid according to the service code.", "expect": {"status": "success", "answer_contains": ["positive", "status", "customer"], "max_steps": 8}}
+{"id": "write-summary", "task": "Create a file called summary.md in the workspace root containing the service name and the command used to build it.", "expect": {"status": "success", "files": {"summary.md": "make build"}, "max_steps": 10}}
+{"id": "absent-ratelimit", "task": "What is Harbour's documented API rate limit per customer?", "expect": {"status": "failed", "max_steps": 12}}
+{"id": "absent-author", "task": "Which named engineer wrote the order deduplication code? Give their name.", "expect": {"status": "failed", "max_steps": 12}}

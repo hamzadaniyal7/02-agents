@@ -1,0 +1,13 @@
+order_id,customer,total_cents,status
+A-1001,Ingrid Halvorsen,4500,shipped
+A-1002,Marco Oyelaran,12999,refunded
+A-1003,Priya Raghunathan,2300,pending
+A-1004,Tomas Beck,8750,shipped
+A-1005,Noor Al-Amin,15600,refunded
+A-1006,Jee-woon Park,3200,cancelled
+A-1007,Fatima Diallo,6400,shipped
+A-1008,Leo Castellanos,990,pending
+A-1009,Agnes Mbeki,22400,refunded
+A-1010,Hiroshi Tanabe,5050,shipped
+A-1011,Elsa Lindqvist,7800,pending
+A-1012,Dmitri Volkov,3399,cancelled

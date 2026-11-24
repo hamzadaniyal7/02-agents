@@ -1,0 +1,35 @@
+# actcheck configuration -- see docs/03-the-loop.md for what each knob does.
+[actcheck]
+workspace = "workspace"
+
+# Budgets: the run stops at whichever ceiling it hits first, and says which.
+max_steps = 24
+max_tokens = 200000
+max_seconds = 300
+max_observation_chars = 6000
+
+# Model
+provider = "anthropic"      # anthropic | scripted | replay
+model = "claude-opus-5"
+effort = "medium"           # low | medium | high | xhigh | max
+thinking = true
+
+# Planning
+plan = true
+plan_max_steps = 8
+max_replans = 2
+
+# Checking: programmatic | model | both | off
+checker = "both"
+checker_model = "claude-sonnet-5"
+checker_effort = "low"
+
+# Loop guard
+repeat_threshold = 2
+no_progress_threshold = 4
+step_attempt_limit = 3
+
+# Context
+context_char_budget = 60000
+keep_recent_steps = 6
+compact = true

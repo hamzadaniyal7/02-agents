@@ -1,0 +1,11 @@
+[service]
+name = "harbour"
+port = 8080
+
+[queue]
+# How long the publisher waits for the downstream fulfilment service.
+timeout_seconds = 15
+max_retries = 3
+
+[limits]
+max_line_items = 50

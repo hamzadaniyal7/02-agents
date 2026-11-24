@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "actcheck"
+version = "0.1.0"
+description = "A from-scratch agent loop that plans, acts, checks its own work, and records every step in a replayable trace."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Hamza Daniyal" }]
+keywords = ["agents", "tool-use", "agent-loop", "llm", "anthropic", "claude", "evaluation"]
+
+dependencies = [
+  "anthropic>=1.0.0",
+]
+
+[project.optional-dependencies]
+# HTTP API around the same loop.
+api = ["fastapi>=0.115", "uvicorn[standard]>=0.30"]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+actcheck = "actcheck.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/hamzadaniyal7/02-agents"
+Documentation = "https://github.com/hamzadaniyal7/02-agents/tree/main/docs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/actcheck"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["B008"]

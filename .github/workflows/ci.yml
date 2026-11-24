@@ -1,0 +1,50 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install
+        run: pip install -e '.[dev]'
+
+      - name: Lint
+        run: |
+          ruff check .
+          ruff format --check .
+
+      # No API key and no network: the scripted provider runs the whole loop,
+      # so the suite asserts real behaviour rather than mocking it away.
+      - name: Test
+        run: pytest -q
+
+      - name: Smoke-test the loop end to end
+        run: |
+          actcheck tools
+          actcheck run "Which office does primary on-call sit in?" \
+            --provider scripted --quiet
+          actcheck trace --list
+          actcheck replay --quiet
+
+      # Gated on one task the offline policy genuinely solves. The full task
+      # set is deliberately NOT a gate: most of it measures model judgement
+      # (counting, synthesis, knowing when to abstain) that the deterministic
+      # stand-in does not have, so a green CI there would mean the eval had
+      # been weakened until it passed. See docs/04-evaluation.md.
+      - name: Smoke-test the eval harness
+        run: actcheck eval --provider scripted --only oncall --no-save
